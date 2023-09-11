@@ -624,7 +624,7 @@ body {
     }
 
     .side-nav li:nth-child(5)::before {
-        content: "Collaboration / Communication"
+        content: "Skillsets"
     }
 
     .side-nav li:nth-child(6)::before {
@@ -632,11 +632,11 @@ body {
     }
 
     .side-nav li:nth-child(7)::before {
-        content: "Leadership / Commitments"
+        content: "Leadership"
     }
 
     .side-nav li:nth-child(8)::before {
-        content: "Skillsets"
+        content: "Collaboration / Community"
     }
 
     .side-nav li:nth-child(9)::before {
@@ -687,6 +687,7 @@ body {
         max-width: 100%
     }
 }
+
 
 .intro--banner {
     position: relative;
@@ -893,7 +894,7 @@ body {
     display: flex;
     width: 960px;
     max-width: 80%;
-    height: 100%;
+    height: 90%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -954,7 +955,7 @@ body {
 
     .work--lockup .slider--item-description {
         display: none;
-        max-width: 250px;
+        max-width: 800px;
         margin: 0 auto
     }
 
@@ -1208,6 +1209,61 @@ body {
         right: -12px
     }
 
+.about--options--photo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 800px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+    .about--options--photo > a {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        text-decoration: none;
+        color: #fff;
+        border: 10px solid #0f33ff;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+.collab--options--photo {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 800px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+    .collab--options--photo > a {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        text-decoration: none;
+        color: #fff;
+        border: 10px solid #0f33ff;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+
 .about--options {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1225,8 +1281,8 @@ body {
 
     .about--options > a {
         position: relative;
-        width: 150px;
-        height: 75px;
+        width: 200px;
+        height: 125px;
         text-decoration: none;
         color: #fff;
         border: 10px solid #0f33ff;
@@ -1247,9 +1303,25 @@ body {
             background-image: url("../img/reputation.gif")
         }
 
+        .about--options--photo > a:nth-child(1) {
+            background-image: url("../img/hiking.jpg")
+        }
+
+        .about--options--photo > a:nth-child(2) {
+            background-image: url("../img/connectingpeople.jpg")
+        }
+
+        .collab--options--photo > a:nth-child(1) {
+            background-image: url("../img/hiking.jpg")
+        }
+
+        }
+
         .about--options > a:hover h3 {
             bottom: -50px
         }
+
+        
 
     .about--options h3 {
         position: absolute;
@@ -1382,7 +1454,7 @@ body {
 
 .contact--lockup .modal {
     padding: 45px 45px;
-    text-align: center;
+    text-align: left;
     background-color: #0c0c0c;
     box-shadow: 0 0 30px 0 rgba(0,0,0,0.75)
 }
