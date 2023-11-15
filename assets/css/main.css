@@ -616,19 +616,19 @@ body {
     }
 
     .side-nav li:nth-child(3)::before {
-        content: "Professional Development"
+        content: "Personal Project Blog"
     }
 
     .side-nav li:nth-child(4)::before {
-        content: "Academic Development"
+        content: "Professional Development"
     }
 
     .side-nav li:nth-child(5)::before {
-        content: "Skillsets"
+        content: "Academic Development"
     }
 
     .side-nav li:nth-child(6)::before {
-        content: "Collaboration / Community"
+        content: "Skillsets"
     }
 
     .side-nav li:nth-child(7)::before {
@@ -640,8 +640,10 @@ body {
     }
 
     .side-nav li:nth-child(9)::before {
-        content: "Connect"
+        content: "Future"
     }
+
+
 
     .side-nav li.is-active {
         color: #0f33ff;
@@ -1236,6 +1238,60 @@ body {
         background-repeat: no-repeat
     }
 
+.about--options--blog1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 800px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0;
+    list-style: none
+}
+
+    .about--options--blog1 > a {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        text-decoration: none;
+        color: #fff;
+        border: 10px solid #0f33ff;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 5px;
+    }
+
+.about--options--blog2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 800px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0;
+    list-style: none
+}
+
+    .about--options--blog2 > a {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        text-decoration: none;
+        color: #fff;
+        border: 10px solid #0f33ff;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 5px;
+    }
+
 .collab--options--photo {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1311,10 +1367,32 @@ body {
             background-image: url("../img/connectingpeople.jpg")
         }
 
-        .collab--options--photo > a:nth-child(1) {
-            background-image: url("../img/hiking.jpg")
+        .about--options--blog1 > a:nth-child(1) {
+            background-image: url("../../blogposts/riotapi/img/riotapi.png")
         }
 
+        .about--options--blog1 > a:nth-child(2) {
+            
+        }
+
+        .about--options--blog1 > a:nth-child(3) {
+            
+        }
+
+        .about--options--blog1 > a:nth-child(4) {
+            
+        }
+
+        .about--options--blog2 > a:nth-child(1) {
+            background-image: url("../img/riotapi.png")
+        }
+
+        .about--options--blog2 > a:nth-child(2) {
+            
+        }
+
+        .about--options--blog2 > a:nth-child(3) {
+            
         }
 
         .about--options > a:hover h3 {
