@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>wesley tran | Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="HTML5 website template">
+  <meta name="keywords" content="global, template, html, sass, jquery">
+  <meta name="author" content="Bucky Maler">
+  <link rel="stylesheet" href="../../assets/css/blog.css">
+</head>
+<body>
+
+<!-- notification for small viewports and landscape oriented smartphones -->
+<div class="device-notification">
+  <a class="device-notification--logo" href="#0">
+    <img src="assets/img/logo.png" alt="Global">
+    <p>WESLEY TRAN</p>
+  </a>
+  <p class="device-notification--message">If you can please orient your device to portrait or find a larger screen to view my e-portfolio! You won't be disappointed!</p>
+</div>
+
+<div class="perspective effect-rotate-left">
+  <div class="container"><div class="outer-nav--return"></div>
+    <div id="viewport" class="l-viewport">
+      <div class="l-wrapper">
+        <header class="header">
+          <a class="header--logo" href="#0">
+            <img src="../../assets/img/logo.png" alt="Global">
+            <p>WESLEY TRAN</p>
+          </a>
+        </header>
+
+        
+        <div class="intro">
+            <div class="intro--banner">
+                <h1>Using Riot API for ARAM Wins!</h1>
+                <h1>1. Utilising the Calls</h1>
+                <h2>ARAM Friendship Compatability</h2>
+
+                <p>
+
+                    Calculating your friends’ compatibilities using Riot Games’ API
+                    <br />
+                    Related keywords: api implementation, riot-watcher api, api wrapper, rate-limiting
+                    <br />
+                    <br />
+                    For context: I play games with friends- League of Legends- there's more than seven of us- and games can only manage 5 of us at a time. We win some and we lose some, but I always wondered…
+                    In the sake of competitiveness- we’ve always wondered: who do I win more with?
+                    That’s where this comes in!
+                    <br />
+                    <br />
+                    Today we’ll be using Riot Games’ API along with python to calculate my compatibility with friends (aka our winrates).
+                    <br />
+                    So the basic use of APIs and explanations I’ll describe in a blog here if you’re new to the concept of “APIs” and what not.
+                    <br />
+                    The tools we're using:
+                </p>
+
+                <ul>
+                    <li>
+                        <span class="highlight">python</span>
+                    </li>
+                    <ul>
+                        <li>
+                            I’m using jupyter notebook (which is just a web-based python interface)
+                        </li>
+                    </ul>
+
+                    <li>
+                        <span class="highlight">riot / league of legends</span>
+                    </li>
+                    <ul>
+                        <li>
+                            You’ll need to register your product and its use (I’m using it for small personal use) in order to access your API
+                        </li>
+                    </ul>
+                </ul>
+
+
+                <p>
+                    Alongside the tools, we’re going to be using the riot-watcher api wrapper to make our calls, as they’ll be handling our rate limiting.
+                    <br />
+                    <br />
+                    The API documentation can be seen here: <a style="color: #408e9c " href="https://developer.riotgames.com/">https://developer.riotgames.com/</a><br />
+                    With all the needed information to make requests.
+                    <br /> I've also posted it on github if you prefer viewing it there... <a style="color: #408e9c " href="https://github.com/WesleyTrann/riotapi-aramwins/tree/main">https://github.com/WesleyTrann/riotapi-aramwins/tree/main</a>
+                    <br />
+                    <br />First! We’re gonna use the only piece of data we have: our <b>username</b>, to fetch some more information!
+                    <br />
+                    <br />
+                    <h2><span class="highlight">&emsp; Call 1:&emsp; Get Profile Details &emsp;</span></h2>
+                    Note: RGAPI-XX is replaced with your API key!
+                    <br />
+                    <a style="color: #1fa38b" href="https://oc1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Fwoqqet?api_key=RGAPI-XX">https://oc1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Fwoqqet?api_key=RGAPI-XX</a>
+                    <br /><br />
+
+                    Returning this...
+                    <br />
+                </p>
+                <div class="codeformat">
+                    <code>
+                        {"id":"jKaBqSClajotBFgAmZf9MuCutAH_kTpSdQ-vMNCY0Vayog","accountId":"cznDtvy4u1YDGZX1xIjscKOxtA3aFjPc62V0XwYFoYZlPp0","puuid":"xG-bOXVhR2gDt93969sFUXIkhvSjwQrfl6SjBbdXvU_bZxaHxEBpdSkn8UkH9ZPH6fHeXDh0sRZf4Q", "name":"Fwoqqet","profileIconId":23,"revisionDate":1697593345000,"summonerLevel":217}
+                    </code>
+                </div>
+
+                <p>
+                    This data is formatted as a dictionary! We can view it easier with a tool such as:
+                    <br />
+                    https://www.cleancss.com/python-beautify/
+                </p>
+                <div class="codeformat">
+                    <code>
+                        {
+                        <br />"id": "jKaBqSClajotBFgAmZf9MuCutAH_kTpSdQ-vMNCY0Vayog",
+                        <br />"accountId": "cznDtvy4u1YDGZX1xIjscKOxtA3aFjPc62V0XwYFoYZlPp0",
+                        <br />"puuid": "xG-bOXVhR2gDt93969sFUXIkhvSjwQrfl6SjBbdXvU_bZxaHxEBpdSkn8UkH9ZPH6fHeXDh0sRZf4Q",
+                        <br />"name": "Fwoqqet",
+                        <br />"profileIconId": 23,
+                        <br />"revisionDate": 1697593345000,
+                        <br />"summonerLevel": 217
+                        <br />}
+                    </code>
+                </div>
+
+                <p>
+                    So the most important thing we want here is our puuid!
+                </p>
+                <div class="codeformat">
+                    <code>
+                        xG-bOXVhR2gDt93969sFUXIkhvSjwQrfl6SjBbdXvU_bZxaHxEBpdSkn8UkH9ZPH6fHeXDh0sRZf4Q
+                    </code>
+                </div>
+                <p>
+                    We’ll use this to retrieve some matches...
+                    <br />
+                    <br />
+                    <h2><span class="highlight">&emsp; Call 2:&emsp; Get Games &emsp;</span></h2>
+                    Note: PUUID-XX is replaced with your PUUID key (you can use mine from above too!)
+                    <br /><a style="color: #1fa38b" href="https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/PUUID-XX/ids?start=0&count=3&api_key=RGAPI-XX">https://sea.api.riotgames.com/lol/match/v5/matches/by-puuid/PUUID-XX/ids?start=0&count=3&api_key=RGAPI-XX</a>
+                    <br />
+                    <br />
+                    It comes with a few parameters: we’ll only grab the ID’s for 3 games for now
+                    Gives us this! A list of our game ID’s
+                    <br />
+                    <div class="codeformat">
+                        <code>
+                            ["OC1_589493271","OC1_589490343","OC1_589176773"]
+                        </code>
+                    </div>
+                    <br />
+                    <h2><span class="highlight">&emsp; Call 3:&emsp; Get Game Details &emsp;</span></h2>
+                    <a style="color: #1fa38b" href="https://sea.api.riotgames.com/lol/match/v5/matches/OC1_589493271?api_key=RGAPI-XX">https://sea.api.riotgames.com/lol/match/v5/matches/OC1_589493271?api_key=RGAPI-XX</a>
+                    <div class="codeformat">
+                        <code>
+                            <br />{'metadata': {'dataVersion': '2', 'matchId': 'OC1_589493271',
+                            <br />'participants':
+                            <br />&emsp;['yi0OQh2cR7eWTlCnVJin1HFg8Nf-TMEuZzBRy7dxhPafa5DRxPgtMcO0toIP-A7BwkcfU1LYK9gmiw',
+                            <br />&emsp;'9Xri7tebtCoyb4Z7R-CmT0qkPAHdGfABuya9n1Y4qbm9hJCuo2RH0pLqE2an7SqsS7oP0WkWwt0DyA',
+                            <br />&emsp;'3evVHUfVg-KGTBIW3cNfIPrv4ggEj4bdgVgouoN37OE8xkSkpJBHphmIAENAWNZ7Ks26sDCzpYgF1g',
+                            <br />&emsp;'xG-bOXVhR2gDt93969sFUXIkhvSjwQrfl6SjBbdXvU_bZxaHxEBpdSkn8UkH9ZPH6fHeXDh0sRZf4Q',
+                            <br />&emsp;'7qpM54ZeWRO0o6nXB4murcRsxJjah1-L36_ESs7ddVNeSPBsZseqsFtnGqev12hrT1rBHbH_AbIIXA',
+                            <br />&emsp;'RiFIFMS6ONTdoDwvzjzSTbO-17djejp3uqq6UrUqeJxM1Ze6O5m2hLWuyhzsfoZSrwa_NgNS6yogSw',
+                            <br />&emsp;'kmrstMYS7z3Zd_MTIxpME9uew8ENHD1NAtaYBYjy_ah_Ufgs61sQsZ_OJwzoLzkNcfCe8Ga2Iate8A',
+                            <br />&emsp;'9gRTf_O-KeJacmewycQG5SUvUcNKmwOaa_yUOla-6v4DImGzonFjrsLYJBbbycVtPrOWdFxI8fMlhQ',
+                            <br />&emsp;'VfV1-L6RK01Di2QKZWuWFMS5u4tnj-oAREk4jPGByYZFmq3CGWjOw8NT5NwJj0AeMBidLqxwJ9BmKQ',
+                            <br />&emsp;'-L0rbXufNXDNdlIb8X7tJV_fCl_xrcnGDD8sSe2YQHZw21Tlh6MG3trr8v4JVrg03RrU7X05lJHFBg']},
+                            <br />'info': {'gameCreation': 1697540474135,
+                            <br />'gameDuration': 1227,
+                            <br />'gameEndTimestamp': 1697541726610,
+                            <br />'gameId': 589493271,
+                            <br />'gameMode': 'ARAM',
+                            <br />...
+                            <br />}}
+                        </code>
+                    </div>
+                    <br />
+                    Gives us a lot of data (that I've tucked away)- Over 5500+ words!
+                    <br /> You can find here the champions they've played, objectives taken, damage dealt, kda, etc...
+                    <br />Everything is documented here: <a style="color: #408e9c " href="https://developer.riotgames.com/apis#match-v5/GET_getMatch">https://developer.riotgames.com/apis#match-v5/GET_getMatch</a>
+                    <br />
+                    &emsp;So the ones we need for this one are our match just our match outcomes: win.
+                    <br />
+                    &emsp;&emsp;So let's get to programming!
+                </p>
+
+
+                <h1>2. Programming the Solution</h1>
+                <p>
+                    Since I want to use a lot more data, I'll be using the riot-watcher wrapper for my implementation.
+                    <br />
+                    Their documentation can be seen here: <a style="color: #408e9c " href="https://riot-watcher.readthedocs.io/en/latest/">https://riot-watcher.readthedocs.io/en/latest/</a>
+                    <br /> You can run these functions in the jupyter notebook as we go.
+                </p>
+
+                <h2>2.1 riotwatcher Installation</h2>
+                <div class="codeformat">
+                    <code class="python">
+                        pip install riotwatcher
+                    </code>
+                </div>
+
+                <h2>2.2 Importing what we need</h2>
+                <div class="codeformat">
+                    <code class="python">
+                        <span style="color: #2c8717">from</span> riotwatcher <span style="color: #2c8717">import</span> LolWatcher, ApiError
+                    </code>
+                </div>
+
+                <h2>2.3 Setting up some of our variables...</h2>
+                <div class="codeformat">
+                    <code class="python">
+                        <span style="color: #468f8d "># Make sure to register/renew apiKey at: https://developer.riotgames.com/</span>
+                        <br />apiKey = <span style="color: #803737 ">'RGAPI-32df8dd9-f72c-422c-7f27-af8eaf770eb3'</span> <span style="color: #468f8d "># looks something like this (never share your api key!)</span>
+                        <br />
+                        <br /><span style="color: #468f8d "># setup riot-watcher with our key</span>
+                        <br />lol_watcher = LolWatcher(apiKey)
+                        <br />region = <span style="color: #803737 ">'oc1'</span>
+                    </code>
+                </div>
+
+                <h2>2.4 Functions!</h2>
+                <div class="codeformat">
+                    <code class="python">
+                        <span style="color: #468f8d "># Creates the list to contain our players and stats</span>
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">openStatList</span>(myFriends):
+                        <br />&emsp;players = []
+                        <br />&emsp;for name in myFriends:
+                        <br />&emsp;&emsp;addPlayer(players, name)
+                        <br />&emsp;<span style="color: #2c8717">return</span> players
+                        <br />
+                        <br /><span style="color: #468f8d "># Adding empty stat players</span>
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">addPlayer</span>(players, name, gamesPlayed = 0, gamesWon = 0):
+                        <br />&emsp;player = {
+                        <br />&emsp;&emsp;<span style="color: #803737">'name'</span> name,
+                        <br />&emsp;&emsp;<span style="color: #803737">'gamesPlayed'</span>: gamesPlayed,
+                        <br />&emsp;&emsp;<span style="color: #803737">'gamesWon'</span>: gamesWon,
+                        <br />&emsp;}
+                        <br />&emsp;players.append(player)
+                        <br />
+                        <br /><span style="color: #468f8d "># Saves all our players' puuids for easy access</span>
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">cacheAccounts</span>(friendList):
+                        <br />&emsp;puuidNameDict = {}
+                        <br />&emsp;<span style="color: #2c8717">for</span> name <span style="color: #2c8717">in</span> friendList:
+                        <br />&emsp;&emsp;puuid = getPuuidFromName(name)
+                        <br />&emsp;&emsp;puuidNameDict.update({puuid: name})
+                        <br />&emsp;<span style="color: #2c8717">return</span> puuidNameDict
+                        <br />
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">getPuuidFromName</span>(name):
+                        <br />&emsp;summonerdto = lol_watcher.summoner.by_name(region, name)
+                        <br />&emsp;<span style="color: #2c8717">return</span> summonerdto[<span style="color: #803737">'puuid'</span>]
+                        <br />
+                        <br /><span style="color: #468f8d "># Returns only our friends' names from the match</span>
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">getNamesFromMatch</span>(gamedetails, accountsDict):
+                        <br />&emsp;nameList = []
+                        <br />&emsp;puuidList = gamedetails[<span style="color: #803737">'metadata'</span>][<span style="color: #803737">'participants'</span>] # gets list of all 10 players
+                        <br />&emsp;<span style="color: #2c8717">for</span> puuid <span style="color: #2c8717">in</span> puuidList:
+                        <br />&emsp;&emsp;<span style="color: #2c8717">if</span> puuid <span style="color: #2c8717">in</span> accountsDict:
+                        <br />&emsp;&emsp;&emsp;nameList.append(accountsDict.get(puuid))
+                        <br />&emsp;<span style="color: #2c8717">return</span> nameList
+                        <br />
+                        <br /><span style="color: #468f8d "># Returns whether we've won the game or not</span>
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">hasWon</span>(gamedetails, teamList):
+                        <br />&emsp;<span style="color: #2c8717">for</span> i <span style="color: #2c8717">in range</span>(10):
+                        <br />&emsp;&emsp;<span style="color: #2c8717">if</span> gamedetails[<span style="color: #803737">'info'</span>][<span style="color: #803737">'participants'</span>][i][<span style="color: #803737">'summonerName'</span>] in teamList:
+                        <br />&emsp;&emsp;&emsp;<span style="color: #2c8717">return</span> (gamedetails[<span style="color: #803737">'info'</span>][<span style="color: #803737">'participants'</span>][i][<span style="color: #803737">'win'</span>])
+                        <br />&emsp;<span style="color: #2c8717">return</span>
+                        <br />
+                        <br /><span style="color: #468f8d "># Update player stats</span>
+                        <br /><span style="color: #2c8717">def</span> <span style="color: #3e46a8">updateStatList</span>(statList, players, victory):
+                        <br />&emsp;<span style="color: #2c8717">for</span> player <span style="color: #2c8717">in</span> players:
+                        <br />&emsp;&emsp;<span style="color: #2c8717">for</span> i <span style="color: #2c8717">in range</span>(len(statList)):
+                        <br />&emsp;&emsp;&emsp;<span style="color: #2c8717">if</span> player == statList[i][<span style="color: #803737">'name'</span>
+                        <br />&emsp;&emsp;&emsp;&emsp;statList[i][<span style="color: #803737">'gamesPlayed'</span>] += 1
+                        <br />&emsp;&emsp;&emsp;&emsp;<span style="color: #2c8717">if</span> (victory):
+                        <br />&emsp;&emsp;&emsp;&emsp;&emsp;statList[i][<span style="color: #803737">'gamesWon'</span>] += 1
+                        <br />&emsp;break
+                        <br /><span style="color: #2c8717">return</span> statList
+                        <br />
+                        <br /><span style="color: #2c8717">def </span><span style="color: #3e46a8">displayStats</span>(statList):
+                        <br />&emsp;finaltext = <span style="color: #803737">""</span>
+                        <br />&emsp;<span style="color: #2c8717">for</span> i <span style="color: #2c8717">in range</span>(len(statList)):
+                        <br />&emsp;&emsp;winratetext = str(round((statList[i][<span style="color: #803737">'gamesWon'</span>]/statList[i][<span style="color: #803737">'gamesPlayed'</span>]*100),0))
+                        <br />&emsp;&emsp;gamesPlayedtext = str(statList[i][<span style="color: #803737">'gamesPlayed'</span>])
+                        <br />&emsp;&emsp;<span style="color: #2c8717">if</span> statList[i][<span style="color: #803737">'gamesPlayed'</span>] != 0:
+                        <br />&emsp;&emsp;&emsp;&emsp;<span style="color: #2c8717">if</span> statList[i][<span style="color: #803737">'name'</span>] != playerName:
+                        <br />&emsp;&emsp;&emsp;&emsp;&emsp;finaltext += statList[i][<span style="color: #803737">'name'</span>]+<span style="color: #803737">": "</span>+winratetext+<span style="color: #803737">"% of "</span>+gamesPlayedtext+<span style="color: #803737">" games. \n"</span>
+                        <br />&emsp;&emsp;&emsp;&emsp;<span style="color: #2c8717">else:</span>
+                        <br />&emsp;&emsp;&emsp;&emsp;&emsp;print(playerName+<span style="color: #803737">" has a winrate of "</span>+winratetext+<span style="color: #803737">"% of "</span>+gamesPlayedtext+<span style="color: #803737">" games, and have the following winrates with:"</span>)
+                        <br />&emsp;print(finaltext)
+                    </code>
+                </div>
+
+                <h2>2.5 The Magic and Everything!</h2>
+                <div class="codeformat">
+                    <code class="python">
+                        <span style="color: #468f8d "># player name and friends</span>
+                        <br />playerName = <span style="color: #803737 ">'Fwoqqet'</span>
+                        <br />myFriends = [
+                        <br />&emsp;playerName,
+                        <br />&emsp;<span style="color: #803737 ">'pinkfolder2',</span>
+                        <br />&emsp;<span style="color: #803737 ">'XxElitePetexX',</span>
+                        <br />&emsp;<span style="color: #803737 ">'Floppy Corn',</span>
+                        <br />&emsp;<span style="color: #803737 ">'Elliechu',</span>
+                        <br />&emsp;<span style="color: #803737 ">'kdng',</span>
+                        <br />&emsp;<span style="color: #803737 ">'BirdBrainn',</span>
+                        <br />&emsp;<span style="color: #803737 ">'HoChiLim',</span>
+                        <br />&emsp;<span style="color: #803737 ">'PhotonBlade8'</span>
+                        <br />]
+                        <br />
+                        <br /><span style="color: #468f8d "># grab my puuid</span>
+                        <br />me = lol_watcher.summoner.by_name(region, playerName)
+                        <br />puuid = me[<span style="color: #803737">'puuid'</span>]
+                        <br />
+                        <br /><span style="color: #468f8d "> # grab all our friends' puuids- so we don't have to constantly search for them</span>
+                        <br />statList = openStatList(myFriends)
+                        <br />puuidNameDict = cacheAccounts(myFriends)
+                        <br />
+                    </code>
+                </div>
+                <p>
+                    We'll bump up the number of matches up to the max possible- our last 100 games.
+                </p>
+                <div class="codeformat">
+                    <code class="python">
+                        <span style="color: #468f8d "># grab the matches</span>
+                        <br />index = 0
+                        <br />matches = 100
+                        <br />queueid = 450 <span style="color: #468f8d ">#this is ARAM</span>
+                        <br />games = lol_watcher.match.matchlist_by_puuid(region, puuid, index, matches, queueid)
+                        <br />
+                        <br /><span style="color: #2c8717">for</span> gameid <span style="color: #2c8717">in</span> games:
+                        <br />&emsp;gamedetails = lol_watcher.match.by_id(region, gameid)
+                        <br />&emsp;namesList = getNamesFromMatch(gamedetails, puuidNameDict)
+                        <br />&emsp;victory = hasWon(gamedetails, namesList)
+                        <br />&emsp;statList = updateStatList(statList, namesList, victory)
+                        <br />
+                        <br />displayStats(statList)
+                    </code>
+                </div>
+                <p>
+                    Note: This can take a few minutes due to the all the API calls we need per games- so please be a patient!
+                    <br />
+                    And this is what we get from our displayed results! (I hope my winrate is better when you make the search!)
+                    <br />So from this, from all the games I've played, my best chances of winning more are with Ellichu and kdng.
+                    <br />Although PhotoonBlade8 has a high winrate, this could just be due to a low sample size.
+                </p>
+
+                <div class="codeformat">
+                    <code>
+                        Fwoqqet has a winrate of 49.0% of 100 games, and have the following winrates with:
+                        <br />&emsp;pinkfolder2: 52.0% of 52 games.
+                        <br />&emsp;XxElitePetexX: 51.0% of 37 games.
+                        <br />&emsp;Floppy Corn: 49.0% of 59 games.
+                        <br />&emsp;Elliechu: 75.0% of 12 games.
+                        <br />&emsp;kdng: 60.0% of 15 games.
+                        <br />&emsp;BirdBrainn: 50.0% of 16 games.
+                        <br />&emsp;HoChiLim: 50.0% of 30 games.
+                        <br />&emsp;PhotonBlade8: 67.0% of 3 games.
+                    </code>
+                </div>
+                
+                <p>
+                    For quick and easy use, you can just run step 2.5 again!
+                    <br />You can change the queue types- the player and friends, and feel free to explore other data you can gather!
+                    <br />
+                    <br />
+                </p>
+                
+                <p>
+                    <h1>3. Congratulations!</h1>
+
+                    I hope your solution worked out and well and hopefully you have the best winrates amongst all your friends (so you can keep playing!).
+                    <br /> If you've bumped into any problems in the process or have any questions feel free to let me know!
+                    <br /> &emsp;My email is <b>wesley.trann@gmail.com</b>
+                    <br />
+                    <br /> Feel free to change the code to how you will and explore all the different stats Riot has available for you!
+
+                    <h2>Happy Coding!</h2>
+                    <br />
+                    <br />
+                    <br />
+                </p>
+
+
+                </div>
+
+            </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
