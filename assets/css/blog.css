@@ -59,22 +59,9 @@ audio, canvas, progress, video {
     display: none
 }
 
-code {
-    color: #7a7a7a;
-    padding: 2px 4px;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-
-div .codeformat {
-    margin: 2px 4px 2px 20px;
-}
-
 p, li {
     color: #b8b8b8;
 }
-
 
 a {
     background-color: transparent
@@ -101,7 +88,7 @@ h1 {
     margin: 1.5em 1.5em 0.5em 0em;
 }
 
-h2 {
+h2, h3 {
     color: #dbdbdb;
 }
 
@@ -159,6 +146,44 @@ pre {
 code, kbd, pre, samp {
     font-family: monospace, monospace;
     font-size: 1em
+}
+
+code {
+    color: #7a7a7a;
+    padding: 2px 4px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+div .codeformat {
+    width: 85%;
+    background-color: #17181a;
+    padding: 4px 7px 2px 20px;
+    border-radius: 12px;
+    margin-left: 2%;
+}
+
+.notemain {
+    background-color: #202329;
+    padding: 4px 7px 2px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.img--topbanner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 80%;
+}
+
+.img--designs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 80%;
 }
 
 button, input, optgroup, select, textarea {
@@ -513,7 +538,6 @@ body {
     }
 }
 
-
 .intro--banner {
     position: relative;
     /*height: 600px*/
@@ -582,12 +606,6 @@ body {
             width: 15px;
             fill: #fff
         }
-
-    .intro--banner img {
-        position: absolute;
-        bottom: 21px;
-        right: -12px
-    }
 
 .intro--banner--double {
     position: relative;
@@ -711,11 +729,8 @@ body {
     }
 }
 
-
-
 @media (max-width: 1180px) {
     .about {
         max-width: 100%
     }
 }
-
