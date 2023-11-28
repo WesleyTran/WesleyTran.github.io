@@ -616,7 +616,10 @@ body {
     }
 
     .side-nav li:nth-child(3)::before {
-        content: "Personal Project Blog"
+        content: "My Blog";
+        color: white;
+        background-color: blue;
+        padding: 4px 16px 4px 4px;
     }
 
     .side-nav li:nth-child(4)::before {
@@ -642,8 +645,6 @@ body {
     .side-nav li:nth-child(9)::before {
         content: "Future"
     }
-
-
 
     .side-nav li.is-active {
         color: #0f33ff;
@@ -689,7 +690,6 @@ body {
         max-width: 100%
     }
 }
-
 
 .intro--banner {
     position: relative;
@@ -1319,7 +1319,6 @@ body {
         background-repeat: no-repeat
     }
 
-
 .about--options {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1359,57 +1358,51 @@ body {
             background-image: url("../img/reputation.gif")
         }
 
-        .about--options--photo > a:nth-child(1) {
-            background-image: url("../img/hiking.jpg")
-        }
+.about--options--photo > a:nth-child(1) {
+    background-image: url("../img/hiking.jpg")
+}
 
-        .about--options--photo > a:nth-child(2) {
-            background-image: url("../img/connectingpeople.jpg")
-        }
+.about--options--photo > a:nth-child(2) {
+    background-image: url("../img/connectingpeople.jpg")
+}
 
-        .about--options--blog1 > a:nth-child(1) {
-            background-image: url("../../blogposts/riotapi/img/riotapi.png")
-        }
+.about--options--blog1 > a:nth-child(1) {
+    background-image: url("../../blogposts/riotapi/img/riotapi.png")
+}
 
-        .about--options--blog1 > a:nth-child(2) {
-            
-        }
+.about--options--blog1 > a:nth-child(2) {
+    background-image: url("../../blogposts/reputation/img/reputation.png")
+}
 
-        .about--options--blog1 > a:nth-child(3) {
-            
-        }
+.about--options--blog1 > a:nth-child(3) {
+}
 
-        .about--options--blog1 > a:nth-child(4) {
-            
-        }
+.about--options--blog1 > a:nth-child(4) {
+}
 
-        .about--options--blog2 > a:nth-child(1) {
-            background-image: url("../img/riotapi.png")
-        }
+.about--options--blog2 > a:nth-child(1) {
+    background-image: url("../img/riotapi.png")
+}
 
-        .about--options--blog2 > a:nth-child(2) {
-            
-        }
+.about--options--blog2 > a:nth-child(2) {
+}
 
-        .about--options--blog2 > a:nth-child(3) {
-            
-        }
+.about--options--blog2 > a:nth-child(3) {
+}
 
-        .about--options > a:hover h3 {
-            bottom: -50px
-        }
+.about--options > a:hover h3 {
+    bottom: -50px
+}
 
-        
-
-    .about--options h3 {
-        position: absolute;
-        bottom: -38px;
-        left: 10px;
-        font-size: 16px;
-        text-transform: uppercase;
-        -webkit-transition: bottom .2s ease-in-out,left .2s ease-in-out;
-        transition: bottom .2s ease-in-out,left .2s ease-in-out
-    }
+.about--options h3 {
+    position: absolute;
+    bottom: -38px;
+    left: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    -webkit-transition: bottom .2s ease-in-out,left .2s ease-in-out;
+    transition: bottom .2s ease-in-out,left .2s ease-in-out
+}
 
 @media (max-width: 767px) {
     .about--banner {
